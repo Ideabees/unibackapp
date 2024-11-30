@@ -3,6 +3,8 @@ package repositories
 import (
 	"database/sql"
 	"errors"
+	"fmt"
+
 	"github.com/v1/uniapp/internal/models"
 )
 
@@ -42,15 +44,22 @@ func (repo *UserRepository) GetUserByEmailAndPassword(email, password string) (*
 	return user, nil
 }
 
-func (repo *UserRepository) GenerateOTP(mobileNumber string, flag bool) (string, error) {
-	
-	/*err := repo.DB.QueryRow(
-		"Insert into USERINFO id, is_verified FROM users WHERE email = ? AND password = ?",
-		email, password,
-	).Scan(&user.ID, &user.IsVerified)
+func (repo *UserRepository) GenerateOTP(mobileNumber string) (string, error) {
+
+	defaultStr := "None"
+	defaultFlag := false
+	state := "OTP_SEND"
+
+	_, err := repo.DB.Exec(
+		"INSERT INTO uniapp.userinfo (mobile_number, email_id, cust_name, company_name, password,  is_mobile_verify, is_email_verify, is_user_verify, mobile_status) VALUES (?,?,?,?,?,?,?,?,?)", mobileNumber, defaultStr, defaultStr, defaultStr, defaultStr, defaultFlag, defaultFlag, defaultFlag, state,
+	)
+
 	if err != nil {
-		return nil, err
-	}*/
+		fmt.Println("Error in inserting into db.")
+		return "ERROR", err
+	}
+
+	fmt.Println("Insertion sucess")
 
 	return "SUCCESS", nil
 }

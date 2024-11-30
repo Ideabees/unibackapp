@@ -24,7 +24,14 @@ func (s *UserService) GenerateOTP(user *models.GenerateOTP) (string, error) {
 	}
 	// call repo layer to update the status
 
-	return "sucess", nil
+	msg, err := s.Repo.GenerateOTP(user.MobileNumber)
+
+	if err != nil {
+		fmt.Println("Error while insering into db")
+		return msg, err
+	}
+
+	return msg, nil
 }
 
 func (s *UserService) VerifyOTP(user *models.User) (string, error) {
