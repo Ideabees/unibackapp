@@ -41,3 +41,16 @@ func (repo *UserRepository) GetUserByEmailAndPassword(email, password string) (*
 	}
 	return user, nil
 }
+
+func (repo *UserRepository) GenerateOTP(mobileNumber string, flag bool) (string, error) {
+	
+	/*err := repo.DB.QueryRow(
+		"Insert into USERINFO id, is_verified FROM users WHERE email = ? AND password = ?",
+		email, password,
+	).Scan(&user.ID, &user.IsVerified)
+	if err != nil {
+		return nil, err
+	}*/
+
+	return "SUCCESS", nil
+}

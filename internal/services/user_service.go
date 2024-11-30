@@ -11,6 +11,15 @@ type UserService struct {
 	Repo *repositories.UserRepository
 }
 
+func (s *UserService) GenerateOTP(user *models.GenerateOTP) (string, error) {
+
+	// call cot api
+
+	// call repo layer to update the status
+	
+	return "sucess", nil
+}
+
 func (s *UserService) VerifyOTP(user *models.User) (string, error) {
 	if err := s.Repo.CreateUser(user); err != nil {
 		return "", err

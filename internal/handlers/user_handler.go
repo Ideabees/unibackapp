@@ -13,6 +13,51 @@ type UserHandler struct {
 	Service *services.UserService
 }
 
+func (handler *UserHandler) GenerateOTP (c *gin.Context) {
+	var mobileNumber models.GenerateOTP
+	if err := c.ShouldBindJSON(&mobileNumber); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		return
+	}
+
+	_, err := handler.Service.GenerateOTP(&mobileNumber)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "OTP sent"})
+}
+
+func (handler *UserHandler) ResendOTP (c *gin.Context) {
+	var mobileNumber models.GenerateOTP
+	if err := c.ShouldBindJSON(&mobileNumber); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		return
+	}
+
+	_, err := handler.Service.GenerateOTP(&mobileNumber)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "OTP sent"})
+}
+
+func (handler *UserHandler) VerifyOTP (c *gin.Context) {
+	var mobileNumber models.GenerateOTP
+	if err := c.ShouldBindJSON(&mobileNumber); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid input"})
+		return
+	}
+
+	_, err := handler.Service.GenerateOTP(&mobileNumber)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+	c.JSON(http.StatusOK, gin.H{"message": "OTP sent"})
+}
+
 func (h *UserHandler) Register(c *gin.Context) {
 	var user models.User
 	if err := c.ShouldBindJSON(&user); err != nil {
