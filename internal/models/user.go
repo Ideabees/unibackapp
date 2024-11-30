@@ -9,7 +9,7 @@ type User struct {
 }
 
 type GenerateOTP struct {
-	MobileNumber string `json:"mobile"`
+	MobileNumber string `json:"mobile_number"`
 }
 
 type VerifyOTP struct {

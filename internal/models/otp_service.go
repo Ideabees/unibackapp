@@ -1,6 +1,6 @@
 package models
 
-type SendOTP struct {
+/*type SendOTP struct {
 	otp_expiry
 	OtpExpiry st
-}
+}*/

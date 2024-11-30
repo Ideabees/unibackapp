@@ -2,6 +2,9 @@ package services
 
 import (
 	"errors"
+	"fmt"
+
+	"github.com/v1/uniapp/internal/cotservices"
 	"github.com/v1/uniapp/internal/models"
 	"github.com/v1/uniapp/internal/repositories"
 	"github.com/v1/uniapp/pkg/utils"
@@ -14,9 +17,13 @@ type UserService struct {
 func (s *UserService) GenerateOTP(user *models.GenerateOTP) (string, error) {
 
 	// call cot api
-
+	err := cotservices.SendOTP(user.MobileNumber)
+	if err != nil {
+		fmt.Println("Error in send otp service layer")
+		return "Error", err
+	}
 	// call repo layer to update the status
-	
+
 	return "sucess", nil
 }
 
