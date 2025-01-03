@@ -15,3 +15,8 @@ curl --location 'http://localhost:8080/api/uniapp/v1/resend-otp' \
     "mobile_number": "3434322"
 }'
 
+Run Docker Compose file
+docker-compose -f docker-compose.uniapp.yml up --build
+
+
+
