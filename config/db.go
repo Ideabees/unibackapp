@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -11,7 +12,8 @@ var DB *sql.DB
 
 func InitDB() {
 	var err error
-	DB, err = sql.Open("mysql", "root:Admin@12345@tcp(localhost:3306)/uniapp")
+	dsn := "gin:ginpassword@tcp(mysql:3306)/mydb"
+	DB, err = sql.Open("mysql", dsn)
 	if err != nil {
 		log.Fatalf("Could not connect to the database: %v", err)
 	}
@@ -19,4 +21,5 @@ func InitDB() {
 		log.Fatalf("Database not reachable: %v", err)
 	}
 	fmt.Println("Database connection established")
+
 }

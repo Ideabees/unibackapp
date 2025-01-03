@@ -2,9 +2,10 @@ package cotservices
 
 import (
 	"fmt"
-	"strings"
-	"net/http"
 	"io"
+	"net/http"
+	"strings"
+
 	"github.com/v1/uniapp/internal/constant"
 )
 
@@ -12,8 +13,8 @@ func SendOTP(mobileNumber string) error {
 
 	baseUrl := constant.MsgBasePath
 
-	endUrl  := fmt.Sprint("?otp_expiry=5&template_id=&mobile=%s&authkey=&realTimeResponse=1", mobileNumber)
-	
+	endUrl := fmt.Sprint("?otp_expiry=5&template_id=&mobile=%s&authkey=&realTimeResponse=1", mobileNumber)
+
 	finalUrl := baseUrl + endUrl
 
 	//"https://control.msg91.com/api/v5/otp?otp_expiry=5&template_id=&mobile=7892360471&authkey=&realTimeResponse=1"

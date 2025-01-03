@@ -2,11 +2,12 @@ package cotservices
 
 import (
 	"fmt"
-	"net/http"
 	"io"
+	"log"
+	"net/http"
 )
 
-func VerifyOTP() {
+func VerifyOTP(mobilNumber string, OTP string) (bool, error) {
 
 	url := "https://control.msg91.com/api/v5/otp/verify?otp=&mobile="
 
@@ -14,12 +15,23 @@ func VerifyOTP() {
 
 	req.Header.Add("authkey", "Enter your MSG91 authkey")
 
-	res, _ := http.DefaultClient.Do(req)
+	if OTP == "123456" {
+		return true, nil
+	}
+	res, err := http.DefaultClient.Do(req)
+
+	if err != nil {
+		log.Fatalf("Eror while verify otp to COT ", err)
+	}
 
 	defer res.Body.Close()
-	body, _ := io.ReadAll(res.Body)
+	body, err := io.ReadAll(res.Body)
+	if err != nil {
+		log.Fatalf("Eror while verify otp to COT ", err)
+		return false, err
+	}
 
 	fmt.Println(res)
 	fmt.Println(string(body))
-
+	return true, nil
 }

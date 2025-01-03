@@ -1,6 +1,6 @@
 module github.com/v1/uniapp
 
-go 1.23.3
+go 1.23
 
 require (
 	github.com/DATA-DOG/go-sqlmock v1.5.2

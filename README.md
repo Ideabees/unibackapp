@@ -8,3 +8,10 @@ curl --location 'http://localhost:8080/api/uniapp/v1/generate-otp' \
 --data '{
     "mobile_number": "3434322"
 }'
+
+curl --location 'http://localhost:8080/api/uniapp/v1/resend-otp' \
+--header 'Content-Type: application/json' \
+--data '{
+    "mobile_number": "3434322"
+}'
+
